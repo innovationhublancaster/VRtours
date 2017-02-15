@@ -14,17 +14,26 @@
   <body>
     <a-scene debug="true">
       <a-assets>
-        <img id="cell" crossorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/8/IMG_1874.jpg">
         <img id="cell-thumb" crossorigin="anonymous" src="cell-thumb.png">
         <img id="main-thumb" crossorigin="anonymous" src="main-thumb.png">
         <img id="well-thumb" crossorigin="anonymous" src="well-thumb.png">
         <audio id="click-sound" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/audio/click.ogg"></audio>
+
         <img id="main" crossorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/36/Inside_Courtyeard.jpg">
         <img id="well" crossorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/33/Well_Tower_Steps.jpg">
+        <img id="cell" crossorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/8/IMG_1874.jpg">
 
         <img id="aBlockPrison" crosorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/22/A_Block_Prison_.jpg">
         <img id="aBlockPrisonCell" crosorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/23/A_Block_Prison_Cell.jpg">
         <img id="cBlockPrison" crosorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/25/C_Block_Prison_2.jpg">
+
+        <img id="cBlockPrisonCell" crosorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/26/C_Block_Prison_Cell.jpg">
+        <img id="cBlockPrisonGroundFloor" crosorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/27/C_Block_Prison_Ground_Floor.jpg">
+        <img id="execCourtYard" crosorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/28/Executioner_s_Courtyard.jpg">
+
+        <img id="well2" crosorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/29/Well_Tower_2.jpg">
+        <img id="well3" crosorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/31/Well_Tower_4.jpg">
+        <img id="secondaryCourtyard" crosorigin="anonymous" src="https://photospheres.lancaster.ac.uk/uploads/photosphere/image/39/Secondary_Courtyard.jpg">
 
         <!-- Image link template to be reused. -->
         <script id="link" type="text/html">
@@ -43,10 +52,25 @@
       <!-- 360-degree image. -->
       <a-sky id="image-360" radius="10" src="#main"></a-sky>
       <!-- Image links. -->
-      <a-entity id="links" layout="type: line; margin: 1.5" position="-1.5 -1 -4">
+      <a-entity id="links-1" layout="type: line; margin: 1.5" position="-1.5 -1 -4">
         <a-entity template="src: #link" data-src="#main" data-thumb="" text="value:Main;color:#000000" material"color:#292929"></a-entity>
         <a-entity template="src: #link" data-src="#cell" data-thumb="" text="value:Cell;color:#000000" material"color:#292929"></a-entity>
         <a-entity template="src: #link" data-src="#well" data-thumb="" text="value:Well;color:#000000" material"color:#292929"></a-entity>
+      </a-entity>
+      <a-entity id="links-2" layout="type: line; margin: 1.5" position="-1.5 0.5 -4">
+        <a-entity template="src: #link" data-src="#aBlockPrison" data-thumb="" text="value:A-Block;color:#000000" material"color:#292929"></a-entity>
+        <a-entity template="src: #link" data-src="#aBlockPrisonCell" data-thumb="" text="value:A-Block Cell;color:#000000" material"color:#292929"></a-entity>
+        <a-entity template="src: #link" data-src="#cBlockPrison" data-thumb="" text="value:C-Block;color:#000000" material"color:#292929"></a-entity>
+      </a-entity>
+      <a-entity id="links-3" layout="type: line; margin: 1.5" position="4 -1 -1.5" rotation="0 -90 0">
+        <a-entity template="src: #link" data-src="#cBlockPrisonCell" data-thumb="" text="value:C-Block Cell;color:#000000" material"color:#292929"></a-entity>
+        <a-entity template="src: #link" data-src="#cBlockPrisonGroundFloor" data-thumb="" text="value:C-Block Ground Floor;color:#000000" material"color:#292929"></a-entity>
+        <a-entity template="src: #link" data-src="#execCourtYard" data-thumb="" text="value:Executioner's Courtyard;color:#000000" material"color:#292929"></a-entity>
+      </a-entity>
+      <a-entity id="links-4" layout="type: line; margin: 1.5" position="4 0.5 -1.5" rotation="0 -90 0">
+        <a-entity template="src: #link" data-src="#well2" data-thumb="" text="value:Well 2;color:#000000" material"color:#292929"></a-entity>
+        <a-entity template="src: #link" data-src="#well3" data-thumb="" text="value:Well 3;color:#000000" material"color:#292929"></a-entity>
+        <a-entity template="src: #link" data-src="#secondaryCourtyard" data-thumb="" text="value:Secondary Courtyard;color:#000000" material"color:#292929"></a-entity>
       </a-entity>
 
       <!-- Camera + cursor. -->
