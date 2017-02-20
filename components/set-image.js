@@ -19,18 +19,35 @@ AFRAME.registerComponent('set-image', {
     var data = this.data;
     var el = this.el;
 
-    debugger;
-
-    for(var i = 0; i<data.links.children.length; i++){
-      if(!(data.links.children[i].dataset.src===data.src)||!(data.links.children[i].dataset.forward===data.forward)||!(data.links.children[i].dataset.back===data.back)){
-        console.log("hide this element!")
+    if(data.src===data.target.attributes[2].value){
+      for(var i = 0; i<data.links.children.length; i++){
+        var forward = (data.links.children[i].dataset.src===data.forward)
+        var back = (data.links.children[i].dataset.src===data.back)
+        if(forward||back){
+          data.links.children[i].setAttribute('visible', true);
+          data.links.children[i].setAttribute('position', (back) ? "-1.5 -1 -4" : "0 -1 -4");
+        }
+        else{
+          data.links.children[i].setAttribute('visible', false);
+        }
       }
     }
-
 
     this.setupFadeAnimation();
 
     el.addEventListener(data.on, function () {
+      for(var i = 0; i<data.links.children.length; i++){
+        var forward = (data.links.children[i].dataset.src===data.forward)
+        var back = (data.links.children[i].dataset.src===data.back)
+        if(forward||back){
+          data.links.children[i].setAttribute('visible', true);
+          data.links.children[i].setAttribute('position', (back) ? "-1.5 -1 -4" : "0 -1 -4");
+        }
+        else{
+          data.links.children[i].setAttribute('visible', false);
+        }
+      }
+
       // Fade out image.
       data.target.emit('set-image-fade');
       // Wait for fade to complete.

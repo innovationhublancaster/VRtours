@@ -52,21 +52,21 @@
       </a-assets>
 
       <!-- 360-degree image. -->
-      <a-sky id="image-360" radius="10" src="#main"></a-sky>
+      <a-sky id="image-360" radius="10" src="#main" position="-1.5 -1 -4"></a-sky>
       <!-- Image links. -->
-      <a-entity id="links" layout="type: line; margin: 1.5" position="-1.5 -1 -4">
-        <a-entity template="src: #link" data-forward="#cell" data-back="#well" data-src="#main" data-thumb="" text="value:Main;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#cell" data-thumb="" text="value:Cell;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#well" data-thumb="" text="value:Well;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#aBlockPrison" data-thumb="" text="value:A-Block;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#aBlockPrisonCell" data-thumb="" text="value:A-Block Cell;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#cBlockPrison" data-thumb="" text="value:C-Block;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#cBlockPrisonCell" data-thumb="" text="value:C-Block Cell;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#cBlockPrisonGroundFloor" data-thumb="" text="value:C-Block Ground Floor;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#execCourtYard" data-thumb="" text="value:Executioner's Courtyard;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#well2" data-thumb="" text="value:Well 2;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#well3" data-thumb="" text="value:Well 3;color:#000000" material"color:#292929"></a-entity>
-        <a-entity template="src: #link" data-src="#secondaryCourtyard" data-thumb="" text="value:Secondary Courtyard;color:#000000" material"color:#292929"></a-entity>
+      <a-entity id="links">
+        <a-entity id="main-link" template="src: #link" data-forward="#cell" data-back="#well3" data-src="#main" data-thumb="" text="value:Main;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="cell-link" template="src: #link" data-forward="#well" data-back="#main" data-src="#cell" data-thumb="" text="value:Cell;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="well-link" template="src: #link" data-forward="#well2" data-back="#cell" data-src="#well" data-thumb="" text="value:Well;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="well2-link" template="src: #link" data-forward="#well3" data-back="#well" data-src="#well2" data-thumb="" text="value:Well 2;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="well3-link" template="src: #link" data-forward="#main" data-back="#well2" data-src="#well3" data-thumb="" text="value:Well 3;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="aBlockPrison-link" template="src: #link" data-forward="#cell" data-back="#well" data-src="#aBlockPrison" data-thumb="" text="value:A-Block;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="aBlockPrisonCell-link" template="src: #link" data-forward="#cell" data-back="#well" data-src="#aBlockPrisonCell" data-thumb="" text="value:A-Block Cell;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="cBlockPrison-link" template="src: #link" data-forward="#cell" data-back="#well" data-src="#cBlockPrison" data-thumb="" text="value:C-Block;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="cBlockPrisonCell-link" template="src: #link" data-forward="#cell" data-back="#well" data-src="#cBlockPrisonCell" data-thumb="" text="value:C-Block Cell;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="cBlockPrisonGroundFloor-link" template="src: #link" data-forward="#cell" data-back="#well" data-src="#cBlockPrisonGroundFloor" data-thumb="" text="value:C-Block Ground Floor;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="execCourtYard-link" template="src: #link" data-forward="#cell" data-back="#well" data-src="#execCourtYard" data-thumb="" text="value:Executioner's Courtyard;color:#000000" material"color:#292929"></a-entity>
+        <a-entity id="secondaryCourtyard-link" template="src: #link" data-forward="#cell" data-back="#well" data-src="#secondaryCourtyard" data-thumb="" text="value:Secondary Courtyard;color:#000000" material"color:#292929"></a-entity>
       </a-entity>
 
       <!-- Camera + cursor. -->
