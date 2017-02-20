@@ -1,32 +1,16 @@
-/* global AFRAME */
-
-/**
- * Component that listens to an event, fades out an entity, swaps the texture, and fades it
- * back in.
- */
-AFRAME.registerComponent('set-image', {
+AFRAME.registerComponent('route', {
   schema: {
     on: {type: 'string'},
     target: {type: 'selector'},
     src: {type: 'string'},
     forward: {type: 'string'},
     back: {type: 'string'},
-    links: {type: 'selector'},
-    dur: {type: 'number', default: 300}
   },
 
   init: function () {
     var data = this.data;
     var el = this.el;
-
     debugger;
-
-    for(var i = 0; i<data.links.children.length; i++){
-      if(!(data.links.children[i].dataset.src===data.src)||!(data.links.children[i].dataset.forward===data.forward)||!(data.links.children[i].dataset.back===data.back)){
-        console.log("hide this element!")
-      }
-    }
-
 
     this.setupFadeAnimation();
 
