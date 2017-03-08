@@ -19,44 +19,22 @@ AFRAME.registerComponent('set-image', {
     var data = this.data;
     var el = this.el;
 
-    if(data.src===data.target.attributes[2].value){
-      for(var i = 0; i<data.links.children.length; i++){
-        var forward = (data.links.children[i].dataset.src===data.forward)
-        var back = (data.links.children[i].dataset.src===data.back)
-        if(forward||back){
-          data.links.children[i].setAttribute('visible', true);
-          data.links.children[i].setAttribute('position', (back) ? "-1.5 -1 -4" : "0 -1 -4");
-        }
-        else{
-          data.links.children[i].setAttribute('visible', false);
-        }
-      }
-    }
-
     this.setupFadeAnimation();
 
-    el.addEventListener(data.on, function () {
-      for(var i = 0; i<data.links.children.length; i++){
-        var forward = (data.links.children[i].dataset.src===data.forward)
-        var back = (data.links.children[i].dataset.src===data.back)
-        if(forward||back){
-          data.links.children[i].setAttribute('visible', true);
-          data.links.children[i].setAttribute('position', (back) ? "-1.5 -1 -4" : "0 -1 -4");
-        }
-        else{
-          data.links.children[i].setAttribute('visible', false);
-        }
-      }
+    el.addEventListener(data.on, this.onEvent.bind(this));
+  },
 
-      // Fade out image.
-      data.target.emit('set-image-fade');
-      // Wait for fade to complete.
-      debugger;
-      setTimeout(function () {
-        // Set image.
-        data.target.setAttribute('material', 'src', data.src);
-      }, data.dur);
-    });
+  onEvent: function () {
+    var data = this.data;
+    debugger
+    // Fade out image.
+    data.target.emit('set-image-fade');
+    // Wait for fade to complete.
+    setTimeout(function () {
+      // Set image.
+      data.target.setAttribute('material', 'src', data.src);
+    }, data.dur);
+    this.alterLinksBasedOnRoute();
   },
 
   /**
@@ -65,7 +43,6 @@ AFRAME.registerComponent('set-image', {
   setupFadeAnimation: function () {
     var data = this.data;
     var targetEl = this.data.target;
-
     // Only set up once.
     if (targetEl.dataset.setImageFadeSetup) { return; }
     targetEl.dataset.setImageFadeSetup = true;
@@ -79,5 +56,20 @@ AFRAME.registerComponent('set-image', {
       from: '#FFF',
       to: '#000'
     });
+  },
+
+  alterLinksBasedOnRoute: function () {
+    var data = this.data;
+    var route = ['#main', '#cell', '#well', '#well2'];
+    var index = route.indexOf(data.src);
+    var next = (index===route.length-1) ? route[0] : route[index+1];
+    var previous = (index===0) ? route[route.length-1] : route[index-1]
+
+    data.links.children.forwardLink.setAttribute('data-src', next);
+    //data.links.children.forwardLink.children[0].setAttribute('set-image', "on: click; target: #image-360; src: "+next+"; links: #links")
+    data.links.children.backwardLink.setAttribute('data-src', previous);
+    //data.links.children.backwardLink.children[0].setAttribute('set-image', "on: click; target: #image-360; src: "+previous+"; links: #links")
+
+    debugger
   }
 });
