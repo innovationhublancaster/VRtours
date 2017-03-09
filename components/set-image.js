@@ -45,6 +45,7 @@ AFRAME.registerComponent('set-image', {
         }
         else{
           data.links.children[i].setAttribute('visible', false);
+          data.links.children[i].setAttribute('position', (back) ? "-15 -10 -40" : "0 -10 -40");
         }
       }
 
