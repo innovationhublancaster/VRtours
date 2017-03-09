@@ -19,16 +19,23 @@ AFRAME.registerComponent('set-image', {
     var data = this.data;
     var el = this.el;
 
+    // when page loads, check current link to see if it's the appropriate link for the current photosphere
     if(data.src===data.target.attributes[2].value){
+      // for each link, check if it's the forward or backward link
       for(var i = 0; i<data.links.children.length; i++){
         var forward = (data.links.children[i].dataset.src===data.forward)
         var back = (data.links.children[i].dataset.src===data.back)
         if(forward||back){
+          // if so, shows link and puts it in correct position
           data.links.children[i].setAttribute('visible', true);
           data.links.children[i].setAttribute('position', (back) ? "-1.5 -1 -4" : "0 -1 -4");
         }
         else{
+          // otherwise hides the link
           data.links.children[i].setAttribute('visible', false);
+          // this next line is super hacky and just moves the links far away so they don't cause the flickering issue
+          // ideally setting interactable to be false would be a thing but by the looks of things it isn'y
+          data.links.children[i].setAttribute('position', (back) ? "-15 -10 -40" : "0 -10 -40");
         }
       }
     }
@@ -36,6 +43,9 @@ AFRAME.registerComponent('set-image', {
     this.setupFadeAnimation();
 
     el.addEventListener(data.on, function () {
+      // does the same as above but doesn't need to check if clicked link matches photosphere
+      // as a) the photosphere wont have loaded yet and b) we only want the forward and backward links
+      // for the photosphere attached to the clicked link to show
       for(var i = 0; i<data.links.children.length; i++){
         var forward = (data.links.children[i].dataset.src===data.forward)
         var back = (data.links.children[i].dataset.src===data.back)
